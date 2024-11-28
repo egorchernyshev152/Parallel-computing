@@ -1,1 +1,1 @@
-print("пашол нахуй")
+#sdfdfsdfdf
