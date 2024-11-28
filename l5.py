@@ -30,7 +30,7 @@ def save_data():
 
 
 # Функция обратного отсчёта для аренды
-def countdown_timer(car, duration=86400):
+def countdown_timer(car, duration=24):
     time.sleep(duration)
     rented_cars.remove(car)
     cars.append(car)
@@ -151,7 +151,8 @@ def customer_menu():
         print("1. Просмотреть доступные машины")
         print("2. Ваши машины")
         print("3. Оформить аренду")
-        print("4. Выйти")
+        print("4. Увеличить бюджет")
+        print("5. Выйти")
         choice = input("Выберите действие: ")
 
         if choice == "1":
@@ -174,8 +175,7 @@ def customer_menu():
                     except ValueError:
                         print("Ошибка: Баланс должен быть числом!")
 
-            budget = int(input("Введите ваш бюджет: "))
-            affordable_cars = [car for car in cars if car['price'] <= budget]
+            affordable_cars = [car for car in cars if car['price'] <= customer_balance]
             if not affordable_cars:
                 print("Нет машин, подходящих под ваш бюджет.")
             else:
@@ -200,6 +200,10 @@ def customer_menu():
                     print("Неверный номер!")
 
         elif choice == "4":
+            add_budget = int(input("На сколько увеличить Ваш бюджет? "))
+            customer_balance += add_budget
+
+        elif choice == "5":
             break
 
         else:
